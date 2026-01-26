@@ -33,7 +33,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        <SessionProviderWrapper>
+        {/* <SessionProviderWrapper> */}
           <ReduxProvider>
             <CustomThemeProvider>
               <NavBar />
@@ -42,7 +42,7 @@ export default function RootLayout({
               </SnackbarProvider>
             </CustomThemeProvider>
           </ReduxProvider>
-        </SessionProviderWrapper>
+        {/* </SessionProviderWrapper> */}
       </body>
     </html>
   );

@@ -30,7 +30,7 @@ import { useSelector } from "react-redux";
 import { RootState, useAppDispatch } from "@/store";
 import { getOrderHistory } from "@/store/orderHistorySlice";
 import { getProfile, Profile, updateProfile, updateProfileAddress } from "@/store/profileSlice";
-import { useSession } from "next-auth/react";
+// import { useSession } from "next-auth/react";
 import {
   EditProfileDialog,
   EditAddressDialog,
@@ -62,7 +62,7 @@ const UserProfile = () => {
   const dispatch = useAppDispatch();
   const { orderHistory } = useSelector((state: RootState) => state.orderHistory);
   const { profile } = useSelector((state: RootState) => state.profile);
-  const { data: session } = useSession();
+  // const { data: session } = useSession();
 
   useEffect(() => {
     dispatch(getOrderHistory());
@@ -97,7 +97,7 @@ const UserProfile = () => {
           <StyledPaper>
             <Box display="flex" flexDirection="column" alignItems="center">
               <ProfileAvatar src={`https://${profile?.image}`} alt={profile?.name}>
-                {session?.user?.image ? <Avatar src={session.user.image} /> : <PersonIcon />}
+                {/* {session?.user?.image ? <Avatar src={session.user.image} /> : <PersonIcon />} */}
               </ProfileAvatar>
               <Typography variant="h5" gutterBottom>
                 {profile?.name}

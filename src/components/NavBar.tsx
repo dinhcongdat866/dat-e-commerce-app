@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState, useCallback } from 'react';
 import { useSelector } from 'react-redux';
-import { useSession } from 'next-auth/react';
+// import { useSession } from 'next-auth/react';
 import { 
     AppBar, 
     Toolbar, 
@@ -67,7 +67,7 @@ const NavBar = () => {
     const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const cartItems = useSelector((state: RootState) => state.cart.items.length);
-    const { data: session } = useSession();
+    // const { data: session } = useSession();
     const [searchQuery, setSearchQuery] = useState("");
     const [searchResults, setSearchResults] = useState<SearchProductsResponse>({
         total: 0,
@@ -95,7 +95,7 @@ const NavBar = () => {
         const response = await fetch(`/api/search?query=${encodeURIComponent(searchQuery)}&page=1&limit=10`);
         const data = await response.json();
         setSearchResults(data);
-    }, 500), [searchQuery]);
+    }, 800), [searchQuery]);
 
     useEffect(() => {
         fetchSearchResults();
@@ -156,7 +156,7 @@ const NavBar = () => {
                         </Badge>
                     </IconButton>
                     <IconButton color="inherit" onClick={handleProfileClick}>
-                        {session ? <Avatar src={session.user?.image || ""} /> : <AccountCircleIcon />}
+                        {/* {session ? <Avatar src={session.user?.image || ""} /> : <AccountCircleIcon />} */}
                     </IconButton>
                     <Menu
                         anchorEl={anchorEl}
@@ -183,13 +183,13 @@ const NavBar = () => {
                     >
                         <Box sx={{ p: 2 }}>
                             <Stack direction="row" spacing={1} alignItems="center" sx={{ mb: 2 }}>
-                                <Avatar src={session?.user?.image || ""} alt={session?.user?.name || ""} />
+                                {/* <Avatar src={session?.user?.image || ""} alt={session?.user?.name || ""} />
                                 <Box sx={{ flexGrow: 1 }}>
                                     <Typography variant="subtitle1">{session?.user?.name || ""}</Typography>
                                     <Typography variant="body2" color="text.secondary">
                                         {session?.user?.email || ""}
                                     </Typography>
-                                </Box>
+                                </Box> */}
                             </Stack>
                             <Divider />
                             <MenuItem onClick={navigateToProfile}>
