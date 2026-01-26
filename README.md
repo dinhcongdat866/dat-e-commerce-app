@@ -1,36 +1,46 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+## E-Commerce App (Next.js App Router)
 
-## Getting Started
+Personal side project to build a full-featured e-commerce platform and demo practical Next.js 15 App Router patterns (auth, data fetching, state management, **`SSR` / `CSR`**, routing). Not a production e-commerce app.
 
-First, run the development server:
+### Core business data
+- **Product**: id, name, price, image, isFavorite.
+- **Cart**: items with quantity; add/remove/update operations.
+- **Order**: order details (items, shipping address, payment method, delivery status); order history.
+- **Profile**: user info (name, email, phone, image); saved addresses (CRUD); password management.
 
+### Main features
+- **Authentication**: Google OAuth via **`NextAuth`**; middleware guards protected routes; session management with server/client components.
+- **Home**: Featured products showcase; hero section; **`SSR`** server component fetch; horizontal scroll product list.
+- **Products**: Product listing page with **`SSR`**; product cards with add-to-cart and favorite buttons; responsive grid layout.
+- **Product Details**: Individual product page with image gallery; quantity selector; add to cart; customer reviews; rating display.
+- **Search**: Debounced autocomplete search (**`500ms`** delay); paginated results via **`/api/search`**; navigate to product on selection.
+- **Cart**: Shopping cart management; item quantity updates; remove items; order summary calculation; **`Redux Toolkit`** state.
+- **Checkout**: Shipping address form; payment method selection; order summary; order creation flow.
+- **User Profile**: Profile editing (name, email, phone); password change dialog; saved addresses management (add/edit); order history list with status chips.
+- **Order Details**: Order information display; delivery status tracking; shipping address; payment method; order items summary.
+- **API & data layer**: Next.js **Route Handlers** under `/api/products` (GET) + `/api/search` (GET with pagination) + `/api/auth/[...nextauth]` (NextAuth); in-memory mock data.
+- **Rendering & state**: **`Redux Toolkit`** for client-side state (cart, profile, orders); server components for **`SSR`** (home, products); client components for interactive UI (cart, checkout, profile, search).
+- **UI/UX**: Material-UI (MUI) components; responsive design (mobile drawer menu); custom theme provider; snackbar notifications; loading states.
+- **State management**: Redux slices for cart, products, order, orderDetails, orderHistory, profile; typed hooks (`useAppDispatch`, `useSelector`).
+
+### Running locally
 ```bash
-npm run dev
+npm install
 # or
-yarn dev
+pnpm install
+
+npm run dev    # http://localhost:3000
 # or
 pnpm dev
+
+npm run lint   # ESLint
 # or
-bun dev
+pnpm lint
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+**Environment variables** (`.env.local`):
+```
+NEXTAUTH_SECRET=your-secret-key
+GOOGLE_CLIENT_ID=your-google-client-id
+GOOGLE_CLIENT_SECRET=your-google-client-secret
+```
